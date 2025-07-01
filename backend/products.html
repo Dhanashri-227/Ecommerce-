@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>All Products</title>
+    <style>
+        /* Modern Color Scheme */
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4ade80;
+            --danger: #f87171;
+            --card-bg: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 2rem;
+            user-select: none;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 2.5rem;
+            color: var(--secondary);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--accent);
+            margin: 0.5rem auto;
+            border-radius: 2px;
+        }
+
+        #products-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Product Card Styles */
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            padding: 1.8rem;
+            width: 320px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.6s ease-out;
+            transform-origin: center;
+            border: 1px solid rgba(67, 97, 238, 0.1);
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(67, 97, 238, 0.2);
+        }
+
+        .product-card h2 {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 0.8rem;
+        }
+
+        .product-card p {
+            margin: 0.8rem 0;
+            padding-left: 0.5rem;
+            border-left: 3px solid var(--accent);
+            transition: var(--transition);
+        }
+
+        .product-card p:hover {
+            border-left: 3px solid var(--primary);
+            background: rgba(67, 97, 238, 0.03);
+        }
+
+        .product-card p strong {
+            color: var(--primary);
+            display: inline-block;
+            width: 160px;
+        }
+
+        /* Button Styles */
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .update-btn,
+        .delete-btn {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            letter-spacing: 0.5px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: translateY(0);
+        }
+
+        .update-btn {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 10px rgba(67, 97, 238, 0.3);
+        }
+
+        .delete-btn {
+            background: var(--danger);
+            color: white;
+            box-shadow: 0 4px 10px rgba(248, 113, 113, 0.3);
+        }
+
+        .update-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(67, 97, 238, 0.4);
+        }
+
+        .delete-btn:hover {
+            background: #ef4444;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(248, 113, 113, 0.4);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #products-container {
+                gap: 1.5rem;
+            }
+
+            .product-card {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+
+        /* body {
+  background: linear-gradient(135deg, #e0fbfc 0%, #98c1d9 100%);
+  color: #14213d;
+  min-height: 100vh;
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+}
+
+/* Main heading 
+h1 {
+  color: #3d5a80;
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px #e0fbfc;
+  border-bottom: 3px solid #007ea7;
+  display: inline-block;
+  padding-bottom: 0.2em;
+} */
+
+        /* Message text */
+        #stock-alerts,
+        .error-message,
+        .info-message {
+            color: #003366;
+            text-align: center;
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Sticky button bar at the bottom */
+        .sticky-btn-bar {
+            position: sticky;
+            position: -webkit-sticky;
+            bottom: 0;
+            width: 100%;
+            background: transparent;
+            /* Bedazzled Blue with opacity */
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 2rem;
+            z-index: 100;
+            box-shadow: 0 -2px 16px rgba(0, 51, 102, 0.08);
+        }
+
+        /* Modern blue button style */
+        .btn {
+            background: linear-gradient(90deg, #3d5a80 0%, #007ea7 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 51, 102, 0.10);
+            transition: background 0.3s cubic-bezier(.4, 2, .6, 1), transform 0.18s cubic-bezier(.4, 2, .6, 1), box-shadow 0.3s;
+            outline: none;
+            margin-right: 0.5rem;
+            letter-spacing: 0.03em;
+        }
+
+        .btn:last-child {
+            margin-right: 0;
+        }
+
+        .btn:hover,
+        .btn:focus {
+            background: linear-gradient(90deg, #007ea7 0%, #3d5a80 100%);
+            color: #e0fbfc;
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 6px 24px rgba(0, 51, 102, 0.18);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .sticky-btn-bar {
+                flex-direction: column;
+                gap: 0.75rem;
+                padding: 0.75rem 1rem;
+                align-items: stretch;
+            }
+
+            .btn {
+                width: 100%;
+                font-size: 1.05rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>All Products</h1>
+    <div id="products-container"></div>
+
+    <!-- Assume you fetch low-stock products via an API -->
+    <div id="stock-alerts"></div>
+
+    <div class="sticky-btn-bar">
+        <button class="btn" onclick="window.location=`https://ecommerce-bomr.onrender.com/inventory/csv`">Download CSV
+            Report</button>
+        <button class="btn" onclick="window.location=`https://ecommerce-bomr.onrender.com/inventory/excel` ">Download
+            Excel Report</button>
+        <button class="btn"
+            onclick="window.location=`https://ecommerce-bomr.onrender.com/download/inventory/pdf`">Download PDF
+            Report</button>
+    </div>
+
+    <script>
+        // Utility function to safely display numbers or fallback
+        const token = localStorage.getItem('authToken');
+
+        if (!token) {
+            alert("Redirecting to login...");
+            window.location.href = "/login.html";
+        }
+
+        function safeNumber(val) {
+            return (typeof val === "number" && !isNaN(val)) ? val : "N/A";
+        }
+
+        let productsData = [];
+
+        fetch('https://ecommerce-bomr.onrender.com/product', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+            .then(res => res.json())
+            .then(products => {
+                productsData = products; // Save all products for later use
+                const container = document.getElementById('products-container');
+                container.innerHTML = products.map(product => {
+                    const price = safeNumber(product.price);
+                    const stock = safeNumber(product.stock);
+                    const total = (price !== "N/A" && stock !== "N/A") ? price * stock : "N/A";
+
+                    return `
+            <div class="product-card" data-id="${product._id}">
+              <h2>${product.company || "N/A"} ${product.model || ""}</h2>
+              <p><strong>Model:</strong> ${product.model || "N/A"}</p>
+              <p><strong>Details:</strong> ${product.details || "N/A"}</p>
+              <p><strong>Price (in rupees):</strong> ${price}</p>
+              <p><strong>Stock:</strong> ${stock}</p>
+              <p><strong>Total Money Invested:</strong> ${total}</p>
+              <div class="button-group">
+                <button class="update-btn">Update</button>
+                <button class="delete-btn">Delete</button>
+              </div>
+            </div>
+          `;
+                }).join('');
+            })
+            .catch(err => {
+                document.getElementById('products-container').innerText = 'Failed to load products.';
+            });
+
+        // Event delegation for update and delete
+        document.getElementById('products-container').addEventListener('click', function (event) {
+            const card = event.target.closest('.product-card');
+            if (!card) return;
+            const productId = card.getAttribute('data-id');
+            if (!productId) {
+                alert('Product ID not found!');
+                return;
+            }
+
+            // Find the product object
+            const product = productsData.find(p => p._id === productId);
+            if (!product) {
+                alert('Product data not found!');
+                return;
+            }
+
+            if (event.target.classList.contains('delete-btn')) {
+                if (confirm("Are you sure you want to delete this product?")) {
+                    fetch(`https://ecommerce-bomr.onrender.com/products/${productId}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    })
+                        .then(res => {
+                            if (res.ok) {
+                                // Animate removal
+                                card.style.transform = 'scale(0.9)';
+                                card.style.opacity = '0';
+                                setTimeout(() => card.remove(), 300);
+                            } else {
+                                alert('Failed to delete product.');
+                            }
+                        });
+                }
+            }
+
+            if (event.target.classList.contains('update-btn')) {
+                // Get current values
+                const priceElem = card.querySelector('p:nth-child(4)');
+                const stockElem = card.querySelector('p:nth-child(5)');
+                const currentPrice = priceElem.textContent.replace(/\D/g, '') || '';
+                const currentStock = stockElem.textContent.replace(/\D/g, '') || '';
+
+                const newPrice = prompt('Enter new price:', currentPrice);
+                const newStock = prompt('Enter new stock:', currentStock);
+
+                if (newPrice && newStock && !isNaN(Number(newPrice)) && !isNaN(Number(newStock))) {
+                    fetch(`https://ecommerce-bomr.onrender.com/products/${productId}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify({
+                            company: product.company,
+                            model: product.model,
+                            details: product.details,
+                            price: Number(newPrice),
+                            stock: Number(newStock)
+                        })
+                    })
+                        .then(res => {
+                            if (!res.ok) throw new Error('Update failed');
+                            return res.json();
+                        })
+                        .then(updatedProduct => {
+                            // Animate update
+                            card.style.transform = 'scale(1.05)';
+                            setTimeout(() => {
+                                card.style.transform = 'scale(1)';
+
+                                // Update content
+                                priceElem.innerHTML = `<strong>Price (in rupees):</strong> ${updatedProduct.price}`;
+                                stockElem.innerHTML = `<strong>Stock:</strong> ${updatedProduct.stock}`;
+                                card.querySelector('p:nth-child(6)').innerHTML =
+                                    `<strong>Total Money Invested:</strong> ${updatedProduct.price * updatedProduct.stock}`;
+                            }, 300);
+                        })
+                        .catch(() => {
+                            alert('Failed to update product.');
+                        });
+                } else {
+                    alert('Invalid input for price or stock.');
+                }
+            }
+        });
+
+
+        fetch('/api/low-stock-products',
+            {
+                'Authorization': `Bearer ${token}`
+            }
+        )
+            .then(res => res.json())
+            .then(products => {
+                if (products.length === 0) return;
+                const alertDiv = document.getElementById('stock-alerts');
+                products.forEach(product => {
+                    const alert = document.createElement('div');
+                    alert.className = 'alert alert-warning';
+                    alert.textContent = `⚠️ Low stock: ${product.name} (${product.stock} left)`;
+                    alertDiv.appendChild(alert);
+                });
+            });
+    </script>
+</body>
+
+</html>

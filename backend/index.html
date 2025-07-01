@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <style>
+    :root {
+  --main-bg: linear-gradient(120deg, #e0e7ef 0%, #f4f7fa 100%);
+  --card-bg: rgba(255,255,255,0.85);
+  --accent: #2563eb;
+  --accent-hover: #174ea6;
+  --input-bg: #f3f6fa;
+  --input-focus: #fff;
+  --border-radius: 22px;
+  --shadow: 0 8px 32px 0 rgba(31,38,135,0.18);
+  --transition: 0.25s cubic-bezier(.7,-0.2,.3,1.4);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: var(--main-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  overflow-x: hidden;
+}
+*{
+  user-select: none;
+}
+
+.login-bg {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 60% 40%, #dbeafe 30%, #f0f4f8 100%);
+  z-index: 0;
+}
+
+.login-card {
+  position: relative;
+  z-index: 1;
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 2.5rem 2.2rem 2rem 2.2rem;
+  max-width: 370px;
+  width: 95vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: popup 0.8s cubic-bezier(.7,-0.2,.3,1.4);
+  border: 2.5px solid #2563eb22;
+  backdrop-filter: blur(10px);
+}
+
+@keyframes popup {
+  0% { opacity: 0; transform: scale(0.92) translateY(60px);}
+  80% { opacity: 1; transform: scale(1.04) translateY(-8px);}
+  100% { opacity: 1; transform: scale(1) translateY(0);}
+}
+
+.login-logo {
+  font-size: 2.3rem;
+  margin-bottom: 1.1rem;
+  color: var(--accent);
+  background: #e0e7ef;
+  border-radius: 50%;
+  padding: 0.7rem 1.1rem;
+  box-shadow: 0 4px 20px #2563eb22;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow var(--transition);
+}
+.login-logo:hover {
+  box-shadow: 0 8px 32px #2563eb33;
+}
+
+.login-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 1px;
+  margin-bottom: 1.7rem;
+  text-align: center;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 0.4rem;
+  color: #222;
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.1px;
+  transition: color var(--transition);
+}
+
+input[type="text"], input[type="password"] {
+  padding: 0.7rem 1rem;
+  margin-bottom: 1.1rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  background: var(--input-bg);
+  box-shadow: 0 2px 8px #2563eb12;
+  outline: none;
+  color: #222;
+  transition: box-shadow var(--transition), background var(--transition);
+}
+input[type="text"]:focus, input[type="password"]:focus {
+  background: var(--input-focus);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+.login-btn {
+  background: var(--accent);
+  color: #fff;
+  padding: 0.85rem 0;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.08rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.3rem;
+  box-shadow: 0 2px 8px #2563eb33;
+  letter-spacing: 0.5px;
+  transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.login-btn:hover, .login-btn:focus {
+  background: var(--accent-hover);
+  box-shadow: 0 4px 18px #2563eb30;
+  transform: translateY(-2px) scale(1.03);
+}
+.login-btn::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255,255,255,0.22);
+  border-radius: 100%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s cubic-bezier(.7,-0.2,.3,1.4), height 0.4s cubic-bezier(.7,-0.2,.3,1.4);
+  z-index: 0;
+}
+.login-btn:active::after {
+  width: 180%;
+  height: 300%;
+}
+
+.signup-link {
+  margin-top: 1.2rem;
+  font-size: 0.97rem;
+  color: #555;
+  text-align: center;
+}
+.signup-link a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 4px;
+  transition: color 0.18s;
+}
+.signup-link a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+@media (max-width: 500px) {
+  .login-card {
+    padding: 1.3rem 0.7rem;
+  }
+  .login-logo {
+    font-size: 1.4rem;
+    padding: 0.4rem 0.7rem;
+  }
+}
+
+
+/* Loading and message styles */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+  color: #007bff;
+}
+.message {
+  margin: 1rem 0;
+  padding: 0.75rem;
+  border-radius: 4px;
+  font-weight: bold;
+  text-align: center;
+}
+.message.success {
+  background: #d4edda;
+  color: #155724;
+}
+.message.error {
+  background: #f8d7da;
+  color: #721c24;
+}
+.hidden {
+  display: none;
+}
+
+/* Loading animation (optional) */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.loading::after {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  border: 3px solid #007bff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+}
+  </style>
+<head>
+  <meta charset="UTF-8">
+  <title>Login | EcommercePro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  
+  <div class="login-bg"></div>
+  <div class="login-card">
+    <div class="login-logo">🏬</div>
+    <div class="login-title">Login to Shop</div>
+    <form>
+      <label for="ownername">Owner Name</label>
+      <input type="text" id="ownername" name="ownername" required autocomplete="username" placeholder="Enter your owner name">
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required autocomplete="current-password" placeholder="Enter your password">
+
+      <button type="submit" id="sub" class="login-btn">Login</button>
+
+         <!-- loading animation and style is in style3.css -->
+       <div id="loading" class="loading hidden">Sending your details ...</div>
+       <div id="message" class="message hidden"></div>
+
+    </form>
+    <div class="signup-link">
+      Don’t have an account?
+      <a href="signup.html">Sign up</a>
+    </div>
+  </div>
+  <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce</title>
+     <link rel="icon" type="image/x-jpg" href="lines.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <style>
+        /* Modern Color Variables matching your image */
+        :root {
+            --primary-blue: #4361ee;
+            --secondary-blue: #3f37c9;
+            --accent-blue: #4cc9f0;
+            --light-blue: #7209b7;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --medium-gray: #6c757d;
+            --dark-gray: #495057;
+            --success: #28a745;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: var(--dark-gray);
+            line-height: 1.6;
+            user-select: none;
+            min-height: 100vh;
+        }
+
+        /* Enhanced Navbar */
+        .navbar {
+            background: var(--white) !important;
+            box-shadow: 0 2px 20px rgba(67, 97, 238, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(67, 97, 238, 0.1);
+            transition: var(--transition);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-blue) !important;
+            transition: var(--transition);
+        }
+
+        .navbar-brand:hover {
+            color: var(--secondary-blue) !important;
+            transform: scale(1.05);
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--dark-gray) !important;
+            font-weight: 500;
+            padding: 0.75rem 1rem !important;
+            border-radius: 8px;
+            margin: 0 0.25rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .navbar-nav .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(67, 97, 238, 0.1), transparent);
+            transition: var(--transition);
+        }
+
+        .navbar-nav .nav-link:hover::before {
+            left: 100%;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: var(--primary-blue) !important;
+            background: rgba(67, 97, 238, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Search Form */
+        .form-control {
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 0.2rem rgba(67, 97, 238, 0.25);
+            transform: scale(1.02);
+        }
+
+        .btn-outline-success {
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            border-radius: 12px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-outline-success::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-blue);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn-outline-success:hover {
+            color: var(--white);
+            border-color: var(--primary-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+        }
+
+        .btn-outline-success:hover::before {
+            left: 0;
+        }
+
+        /* Main Form Container */
+        #box {
+               /* Increased from 600px */
+            width: 90%;          /* Responsive width */
+            margin: 3rem auto;
+            max-width: 700px;
+            padding: 2.5rem;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(67, 97, 238, 0.1);
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        #box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-blue));
+        }
+
+        #box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(67, 97, 238, 0.15);
+        }
+
+        /* Form Styling */
+        #form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        #form label {
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+            display: block;
+            position: relative;
+        }
+
+        #form label::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: var(--transition);
+        }
+
+        #form input:focus + label::after,
+        #form label:hover::after {
+            width: 100%;
+        }
+
+        #form input {
+           width: 100%;              /* Make input fields stretch to full width */
+            padding: 1rem 1.5rem;  
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            background: rgba(248, 249, 250, 0.5);
+            position: relative;
+        }
+
+        #form input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+            transform: scale(1.02);
+            background: var(--white);
+        }
+
+        #form input:hover {
+            border-color: var(--accent-blue);
+            background: var(--white);
+        }
+
+        /* Submit Button */
+        #form button[type="submit"] {
+            background: linear-gradient(45deg, var(--primary-blue), var(--secondary-blue));
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 1rem;
+        }
+
+        #form button[type="submit"]::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--accent-blue), var(--light-blue));
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        #form button[type="submit"]:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.3);
+        }
+
+        #form button[type="submit"]:hover::before {
+            left: 0;
+        }
+
+        #form button[type="submit"]:active {
+            transform: translateY(-1px);
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        /* Dropdown Menu Enhancements */
+        .dropdown-menu {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 0.5rem 0;
+            animation: slideInDown 0.3s ease-out;
+        }
+
+        .dropdown-item {
+            padding: 0.75rem 1.5rem;
+            transition: var(--transition);
+            border-radius: 8px;
+            margin: 0.25rem 0.5rem;
+        }
+
+        .dropdown-item:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+            transform: translateX(5px);
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #box {
+                margin: 2rem 1rem;
+                padding: 2rem;
+            }
+
+            .navbar-nav .nav-link {
+                margin: 0.25rem 0;
+            }
+        }
+
+        /* Loading Animation for Form Submission */
+        .loading {
+            animation: pulse 1.5s infinite;
+        }
+
+        /* Success State */
+        .success {
+            background: linear-gradient(45deg, var(--success), #20c997) !important;
+        }
+
+        /* Form Group Styling */
+        .form-group {
+            position: relative;
+        }
+
+        .form-group input:focus + label,
+        .form-group input:not(:placeholder-shown) + label {
+            transform: translateY(-25px) scale(0.8);
+            color: var(--primary-blue);
+        }
+
+        /* Floating Labels Effect */
+        .floating-label {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            transition: var(--transition);
+            pointer-events: none;
+            color: var(--medium-gray);
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">✨ EcommercePro</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="products.html">📦 Products</a>
+        </li>
+
+        <!-- <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            ⚙️ Settings
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#"> Profile</a></li>
+            <li><a class="dropdown-item" href="#">📊 Analytics</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">🚪 Logout</a></li>
+          </ul>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="account.html">👤 Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="support.html">📞 Support</a>
+        </li>
+      </ul>
+      <!-- <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search products..." aria-label="Search"/>
+        <button class="btn btn-outline-success" type="submit">🔍 Search</button>
+      </form> -->
+    </div>
+  </div>
+</nav>
+
+<div id="box">
+    <form id="form">
+      <h2 style="text-align: center; color: var(--primary-blue); margin-bottom: 2rem; font-weight: 700;">Add New Product</h2>
+      
+      <div class="form-group">
+        <label for="company">🏢 Product Name</label>
+        <input type="text" id="company" name="company" required placeholder=" ">
+      </div>
+
+      <div class="form-group">
+        <label for="model">📱 Product Type</label>
+        <input type="text" id="model" name="model" required placeholder=" ">
+      </div>
+
+      <div class="form-group">
+        <label for="details">📝 Product Details</label>
+        <input type="text" id="details" name="details" required placeholder=" ">
+      </div>
+
+      <div class="form-group">
+        <label for="price">💰 Price (₹)</label>
+        <input type="number" id="price" name="price" required placeholder=" ">
+      </div>
+      
+      <div class="form-group">
+        <label for="stock">📦 Stock Quantity</label>
+        <input type="number" id="stock" name="stock" required placeholder=" ">
+      </div>
+
+      <button type="submit">🚀 ADD PRODUCT</button>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+<script src="ecommerce.js"></script>
+<script>
+// Enhanced form interactions
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('form');
+    const inputs = form.querySelectorAll('input');
+    const submitBtn = form.querySelector('button[type="submit"]');
+
+    // Add focus/blur effects
+    inputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            this.parentElement.style.transform = 'scale(1.02)';
+        });
+
+        input.addEventListener('blur', function() {
+            this.parentElement.style.transform = 'scale(1)';
+        });
+    });
+
+    // Form submission with animation
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Add loading state
+        submitBtn.classList.add('loading');
+        submitBtn.textContent = '⏳ Adding Product...';
+        
+        // Simulate API call
+        setTimeout(() => {
+            submitBtn.classList.remove('loading');
+            submitBtn.classList.add('success');
+            submitBtn.textContent = '✅ Product Added!';
+            
+            // Reset after 2 seconds
+            setTimeout(() => {
+                submitBtn.classList.remove('success');
+                submitBtn.textContent = '🚀 ADD PRODUCT';
+                form.reset();
+            }, 2000);
+        }, 1500);
+    });
+});
+</script>
+</body>
+</html>

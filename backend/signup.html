@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up | EcommercePro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --main-bg: linear-gradient(120deg, #e0e7ef 0%, #f4f7fa 100%);
+      --card-bg: #fff;
+      --accent: #2563eb;
+      --accent-hover: #174ea6;
+      --shadow: 0 8px 32px 0 rgba(31,38,135,0.15);
+      --border-radius: 22px;
+      --transition: 0.22s cubic-bezier(.7,-0.2,.3,1.4);
+    }
+    *{
+      user-select: none;
+    }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--main-bg);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      user-select: none;
+      padding-top: 40px;
+    }
+    .signup-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      max-width: 440px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2.5rem 2.2rem 2rem 2.2rem;
+      position: relative;
+      animation: popup 0.8s cubic-bezier(.7,-0.2,.3,1.4);
+      border: none;
+      overflow: hidden;
+    }
+    /* Animated gradient top border */
+    .signup-card::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 5px;
+      border-radius: var(--border-radius) var(--border-radius) 0 0;
+      background: linear-gradient(90deg, var(--accent), #0ea5e9, var(--accent), #0ea5e9);
+      background-size: 200% 100%;
+      animation: gradientMove 2.5s linear infinite;
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0 0; }
+      100% { background-position: 100% 0; }
+    }
+    @keyframes popup {
+      0% { opacity: 0; transform: scale(0.92) translateY(60px);}
+      80% { opacity: 1; transform: scale(1.04) translateY(-8px);}
+      100% { opacity: 1; transform: scale(1) translateY(0);}
+    }
+    .signup-logo {
+      font-size: 2.3rem;
+      margin-bottom: 1.1rem;
+      color: var(--accent);
+      background: #e0e7ef;
+      border-radius: 50%;
+      padding: 0.7rem 1.1rem;
+      box-shadow: 0 4px 20px #2563eb22;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: box-shadow var(--transition);
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .signup-logo:hover {
+      box-shadow: 0 8px 32px #2563eb33;
+    }
+    .signup-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-align: center;
+      margin-bottom: 2.2rem;
+      letter-spacing: 1px;
+      margin-top: 0.5rem;
+    }
+    form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.3rem;
+    }
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .input-group label {
+      font-size: 1.08rem;
+      color: #222;
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+      transition: color var(--transition);
+    }
+    .input-group input {
+      padding: 0.7rem 1rem;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      background: #f3f6fa;
+      box-shadow: 0 2px 8px #2563eb11;
+      outline: none;
+      color: #222;
+      transition: box-shadow var(--transition), background var(--transition);
+    }
+    .input-group input:focus {
+      background: #fff;
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .input-group input:hover {
+      box-shadow: 0 0 0 2px #0ea5e9;
+    }
+    .signup-btn {
+      background: linear-gradient(90deg, var(--accent), #0ea5e9);
+      color: #fff;
+      padding: 0.95rem 0;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.13rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 0.8rem;
+      box-shadow: 0 2px 8px #2563eb33;
+      letter-spacing: 0.5px;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.18s;
+      position: relative;
+      overflow: hidden;
+    }
+    .signup-btn:hover, .signup-btn:focus {
+      background: linear-gradient(90deg, #0ea5e9, var(--accent));
+      box-shadow: 0 4px 18px #2563eb30;
+      transform: translateY(-2px) scale(1.03);
+    }
+    .login-link {
+      margin-top: 1.2rem;
+      font-size: 0.97rem;
+      color: #555;
+      text-align: center;
+    }
+    .login-link a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      margin-left: 4px;
+      transition: color 0.18s;
+    }
+    .login-link a:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
+    }
+    @media (max-width: 600px) {
+      .signup-card {
+        padding: 1.3rem 0.7rem;
+      }
+      .signup-title {
+        font-size: 1.3rem;
+      }
+      .signup-logo {
+        font-size: 1.4rem;
+        padding: 0.4rem 0.7rem;
+      }
+    }
+    
+/* Loading and message styles */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+  color: #007bff;
+}
+.message {
+  margin: 1rem 0;
+  padding: 0.75rem;
+  border-radius: 4px;
+  font-weight: bold;
+  text-align: center;
+}
+.message.success {
+  background: #d4edda;
+  color: #155724;
+}
+.message.error {
+  background: #f8d7da;
+  color: #721c24;
+}
+.hidden {
+  display: none;
+}
+
+/* Loading animation (optional) */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.loading::after {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  border: 3px solid #007bff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+}
+  </style>
+</head>
+<body>
+  <div class="signup-card">
+    <div class="signup-logo">🏬</div>
+    <div class="signup-title">Create your Shop</div>
+    <form>
+      <div class="input-group">
+        <label for="shopname">Shop Name</label>
+        <input type="text" id="shopname" name="shopname" required autocomplete="shopname" placeholder="Enter your shop name">
+      </div>
+      <div class="input-group">
+        <label for="ownername">Owner Name</label>
+        <input type="text" id="ownername" name="ownername" required autocomplete="ownername" placeholder="Enter owner name">
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required autocomplete="new-password" placeholder="Create a password">
+      </div>
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required placeholder="Enter your email">
+      </div>
+      <button type="submit" class="signup-btn">Sign Up</button>
+
+       <!-- loading animation and style is in style3.css -->
+       <div id="loading" class="loading hidden">Verifying Your data ....</div>
+       <div id="message" class="message hidden"></div>
+       
+    </form>
+    <div class="login-link">
+      Already have an account?
+      <a href="index.html">Login</a>
+    </div>
+  </div>
+  <script src="signup.js"></script>
+</body>
+</html>

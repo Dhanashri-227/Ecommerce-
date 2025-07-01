@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-const mongoUrl = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/Ecommerce';
+const mongoUrl = process.env.MONGO_URI || 'mongodb+srv://dhanshri1701:QMBtQJNM0o2NEkoX@cluster0.upc1pwu.mongodb.net/';
 
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,

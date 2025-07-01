@@ -1,0 +1,141 @@
+/* body {
+  background: #f5f7fa;
+  font-family: 'Poppins', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Modern heading style 
+h1, .main-heading {
+  font-family: 'Montserrat', 'Poppins', Arial, sans-serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  letter-spacing: 1.2px;
+  color: #236077; /* Deep blue accent 
+  margin: 2rem 0 1.2rem 0;
+  text-align: center;
+  text-shadow: 0 4px 24px #5bc1d455;
+  background: linear-gradient(90deg, #236077 60%, #5bc1d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Product card grid container 
+#products-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.2rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Modern product card 
+.product-card {
+  background: linear-gradient(120deg, #fff 70%, #e9f7fb 100%);
+  border-radius: 22px;
+  box-shadow: 0 8px 40px rgba(91,193,212,0.12), 0 2px 8px rgba(35,96,119,0.08);
+  padding: 2rem 2.5rem 1.5rem 2.5rem;
+  max-width: 430px;
+  min-width: 270px;
+  width: 100%;
+  margin: 0 auto;
+  transition: transform 0.28s cubic-bezier(.7,-0.2,.3,1.4), box-shadow 0.28s;
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px) scale(0.97);
+  animation: cardIn 0.7s cubic-bezier(.7,-0.2,.3,1.4) forwards;
+}
+
+@keyframes cardIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.product-card:hover {
+  transform: translateY(-8px) scale(1.025);
+  box-shadow: 0 16px 48px #5bc1d433, 0 2px 8px #23607722;
+}
+
+/* Product card title 
+.product-card h2 {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #236077;
+  margin: 0 0 0.7rem 0;
+  letter-spacing: 0.7px;
+  text-shadow: 0 2px 8px #5bc1d433;
+  background: linear-gradient(90deg, #236077 60%, #5bc1d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Product card details 
+.product-card p {
+  font-size: 1.08rem;
+  color: #384c4c;
+  margin: 0.3rem 0 0.3rem 0;
+  line-height: 1.5;
+}
+
+.product-card strong {
+  color: #5bc1d4;
+  font-weight: 700;
+}
+
+/* Responsive 
+@media (max-width: 700px) {
+  .product-card {
+    padding: 1.1rem 1rem 1rem 1rem;
+    max-width: 98vw;
+  }
+  h1, .main-heading {
+    font-size: 1.5rem;
+    margin-top: 1.2rem;
+  }
+} */
+
+#products-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: flex-start;
+  padding: 1rem;
+}
+
+.product-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0, 180, 216, 0.13);
+  padding: 1.5rem 2rem;
+  width: 300px;
+  margin: 0;
+  font-family: 'Poppins', Arial, sans-serif;
+  color: #1b2845;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 12px 40px rgba(0, 180, 216, 0.3);
+}
+
+@media (max-width: 768px) {
+  #products-container {
+    justify-content: center;
+  }
+  .product-card {
+    width: 90vw;
+  }
+}
+
+/* Optional: add some padding to the body for better spacing */
+body {
+  padding: 1rem;
+}

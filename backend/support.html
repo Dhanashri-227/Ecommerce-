@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support | EcommercePro</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+      min-height: 100vh;
+      user-select: none;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    .navbar {
+      background: #fff !important;
+      box-shadow: 0 2px 20px rgba(67, 97, 238, 0.07);
+    }
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #4361ee !important;
+    }
+    .nav-link.active, .nav-link:focus, .nav-link:hover {
+      color: #4361ee !important;
+      background: rgba(67, 97, 238, 0.08);
+      border-radius: 8px;
+      transition: 0.2s;
+    }
+    .support-card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(67, 97, 238, 0.13);
+      padding: 2.5rem 2rem;
+      max-width: 450px;
+      margin: 3rem auto;
+      animation: fadeIn 0.7s;
+    }
+    .support-card h2 {
+      color: #4361ee;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      text-align: center;
+    }
+    .form-label {
+      font-weight: 500;
+      color: #3f37c9;
+    }
+    .form-control {
+      border-radius: 12px;
+      border: 2px solid #e9ecef;
+      font-size: 1.1rem;
+      padding: 0.9rem 1.2rem;
+      transition: border-color 0.2s;
+    }
+    .form-control:focus {
+      border-color: #4361ee;
+      box-shadow: 0 0 0 0.2rem rgba(67, 97, 238, 0.12);
+    }
+    .btn-support {
+      background: linear-gradient(45deg, #4361ee, #4cc9f0);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 0.85rem 2rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-top: 1rem;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 14px rgba(67, 97, 238, 0.11);
+    }
+    .btn-support:hover {
+      background: linear-gradient(45deg, #3f37c9, #4361ee);
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 8px 24px rgba(67, 97, 238, 0.18);
+    }
+    .support-info {
+      margin-top: 2rem;
+      text-align: center;
+      color: #495057;
+      font-size: 1.05rem;
+    }
+    .support-info strong {
+      color: #4361ee;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    @media (max-width: 600px) {
+      .support-card {
+        padding: 1.2rem 0.5rem;
+        max-width: 98vw;
+      }
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">✨ EcommercePro</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="ecommerce.html">Add Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="products.html">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="profile.html">Profile</a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="support-card">
+  <h2>Support & Contact Us</h2>
+  <form id="supportForm">
+    <div class="mb-3">
+      <label for="name" class="form-label">Your Name</label>
+      <input type="text" class="form-control" id="name" required placeholder="Enter your name">
+    </div>
+    <div class="mb-3">
+      <label for="feature" class="form-label">New feature</label>
+      <input type="text" class="form-control" id="feature" required placeholder="Enter details about new feature ">
+    </div>
+    <div class="mb-3">
+      <label for="message" class="form-label">Report a bug </label>
+      <textarea class="form-control" id="message" rows="4" required placeholder="Details about the bug you faced "></textarea>
+    </div>
+    <button type="submit" class="btn btn-support w-100">Send Message</button>
+  </form>
+  <div class="support-info mt-4">
+    <div><strong>Email:</strong> support@ecommercepro.com</div>
+    <div><strong>Phone:</strong> +91-9876543210</div>
+    <div><strong>Address:</strong> 123 Blue Street, Tech City, India</div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Demo: Show a thank you message on submit
+  document.getElementById('supportForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    this.reset();
+    alert('Thank you for contacting support! We will get back to you soon.');
+  });
+</script>
+</body>
+</html>
